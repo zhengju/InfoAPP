@@ -15,6 +15,7 @@
 		7AB33FB0227E805C00935669 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AB33FAE227E805C00935669 /* LaunchScreen.storyboard */; };
 		7AB33FB8227E8AE900935669 /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB33FB7227E8AE900935669 /* InfoCell.swift */; };
 		7AB33FC0227EC08D00935669 /* InfoDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB33FBF227EC08D00935669 /* InfoDetailController.swift */; };
+		7AB33FE1227FFDA400935669 /* InfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB33FE0227FFDA400935669 /* InfoModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		7AB33FB1227E805C00935669 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7AB33FB7227E8AE900935669 /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
 		7AB33FBF227EC08D00935669 /* InfoDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoDetailController.swift; sourceTree = "<group>"; };
+		7AB33FE0227FFDA400935669 /* InfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				7AB33FA5227E805B00935669 /* AppDelegate.swift */,
 				7AB33FA7227E805B00935669 /* ViewController.swift */,
 				7AB33FB7227E8AE900935669 /* InfoCell.swift */,
+				7AB33FE0227FFDA400935669 /* InfoModel.swift */,
 				7AB33FBF227EC08D00935669 /* InfoDetailController.swift */,
 				7AB33FA9227E805B00935669 /* Main.storyboard */,
 				7AB33FAC227E805C00935669 /* Assets.xcassets */,
@@ -194,15 +197,23 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-InfoAPP/Pods-InfoAPP-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -216,6 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AB33FE1227FFDA400935669 /* InfoModel.swift in Sources */,
 				7AB33FC0227EC08D00935669 /* InfoDetailController.swift in Sources */,
 				7AB33FA8227E805B00935669 /* ViewController.swift in Sources */,
 				7AB33FA6227E805B00935669 /* AppDelegate.swift in Sources */,

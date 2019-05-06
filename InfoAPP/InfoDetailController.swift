@@ -10,13 +10,15 @@ import UIKit
 import WebKit
 class InfoDetailController: UIViewController {
 
+    var url: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "资讯详情";
         
         let webView = WKWebView.init(frame: view.bounds);
         self.view.addSubview(webView);
-        webView.load(URLRequest(url: URL(string: "http://mini.eastday.com/mobile/190505103745908.html")!));
+        webView.load(URLRequest(url: URL(string: url)!));
         
     }
     

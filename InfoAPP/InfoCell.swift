@@ -59,4 +59,11 @@ class InfoCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setModel(infoModel: InfoModel){
+        sourceLable.text = infoModel.author_name;
+        titleLable.text = infoModel.title;
+        infoImg.kf.setImage(
+            with: URL(string: infoModel.thumbnail_pic_s));
+    }
+
 }
