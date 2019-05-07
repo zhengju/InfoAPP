@@ -16,6 +16,8 @@
 		7AB33FB8227E8AE900935669 /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB33FB7227E8AE900935669 /* InfoCell.swift */; };
 		7AB33FC0227EC08D00935669 /* InfoDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB33FBF227EC08D00935669 /* InfoDetailController.swift */; };
 		7AB33FE1227FFDA400935669 /* InfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB33FE0227FFDA400935669 /* InfoModel.swift */; };
+		7AB3400D228121F100935669 /* InfoTopSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB3400C228121F100935669 /* InfoTopSelectedView.swift */; };
+		7AB34010228125D300935669 /* HeadFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB3400F228125D300935669 /* HeadFile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		7AB33FB7227E8AE900935669 /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
 		7AB33FBF227EC08D00935669 /* InfoDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoDetailController.swift; sourceTree = "<group>"; };
 		7AB33FE0227FFDA400935669 /* InfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoModel.swift; sourceTree = "<group>"; };
+		7AB3400C228121F100935669 /* InfoTopSelectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTopSelectedView.swift; sourceTree = "<group>"; };
+		7AB3400F228125D300935669 /* HeadFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadFile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,9 +81,11 @@
 			children = (
 				7AB33FA5227E805B00935669 /* AppDelegate.swift */,
 				7AB33FA7227E805B00935669 /* ViewController.swift */,
+				7AB3400C228121F100935669 /* InfoTopSelectedView.swift */,
 				7AB33FB7227E8AE900935669 /* InfoCell.swift */,
 				7AB33FE0227FFDA400935669 /* InfoModel.swift */,
 				7AB33FBF227EC08D00935669 /* InfoDetailController.swift */,
+				7AB3400F228125D300935669 /* HeadFile.swift */,
 				7AB33FA9227E805B00935669 /* Main.storyboard */,
 				7AB33FAC227E805C00935669 /* Assets.xcassets */,
 				7AB33FAE227E805C00935669 /* LaunchScreen.storyboard */,
@@ -232,6 +238,8 @@
 				7AB33FA8227E805B00935669 /* ViewController.swift in Sources */,
 				7AB33FA6227E805B00935669 /* AppDelegate.swift in Sources */,
 				7AB33FB8227E8AE900935669 /* InfoCell.swift in Sources */,
+				7AB34010228125D300935669 /* HeadFile.swift in Sources */,
+				7AB3400D228121F100935669 /* InfoTopSelectedView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
