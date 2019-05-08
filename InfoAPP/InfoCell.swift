@@ -15,11 +15,13 @@ class InfoCell: UITableViewCell {
     let titleLable:UILabel! //标题
     let sourceLable:UILabel! //来源
     let infoImg:UIImageView! //图片
+    let dateLabel:UILabel! //图片
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         
-        titleLable = UILabel();
-        sourceLable = UILabel();
+        titleLable = UILabel()
+        sourceLable = UILabel()
         infoImg = UIImageView()
+        dateLabel = UILabel()
         super.init(style: style, reuseIdentifier: reuseIdentifier);
 
         titleLable.text = "寺库 X Art Chengdu线上线下同步博览会空降成都";
@@ -34,7 +36,10 @@ class InfoCell: UITableViewCell {
         infoImg.image = UIImage.init(imageLiteralResourceName: "lotus");
         contentView.addSubview(infoImg);
         
-       
+        dateLabel.font = UIFont.systemFont(ofSize: 12);
+        dateLabel.textColor = UIColor.gray;
+        contentView.addSubview(dateLabel)
+        
         
         titleLable.snp.makeConstraints { (make) ->Void in
             make.left.equalTo(contentView).offset(20);
@@ -45,6 +50,10 @@ class InfoCell: UITableViewCell {
         sourceLable.snp.makeConstraints { (make) ->Void  in
             make.left.equalTo(titleLable);
             make.bottom.equalTo(contentView).offset(-20);
+        }
+        dateLabel.snp.makeConstraints { (make) ->Void  in
+            make.left.equalTo(sourceLable.snp.right).offset(5);
+            make.centerY.equalTo(sourceLable.snp.centerY);
         }
         
         infoImg.snp.makeConstraints { (make) ->Void in
@@ -62,6 +71,7 @@ class InfoCell: UITableViewCell {
     func setModel(infoModel: InfoModel){
         sourceLable.text = infoModel.author_name;
         titleLable.text = infoModel.title;
+        dateLabel.text = infoModel.date
         infoImg.kf.setImage(
             with: URL(string: infoModel.thumbnail_pic_s));
     }

@@ -41,14 +41,20 @@ class ViewController: UIViewController {
     
     func getDatas(index: Int) {
 
+        let hud = self.pleaseWait()
+        
         //请求接口数据
         Alamofire.request("http://toutiao-ali.juheapi.com/toutiao/index", parameters: ["type":types[seletedIndex]], headers: ["Authorization":"APPCODE 4c0aa04ae3a74d57996a169ae94c78e6"]).responseJSON { (response) in
             if response.result.isSuccess {
                 if response.result.value != nil{
                     
+                    
+                    
                     switch response.result{
                     case.success(let json):
                         
+                        hud.hide()
+//                        self.successNotice("Success", autoClear: true)
                         
                         print(JSON.init(arrayLiteral: json))
                         

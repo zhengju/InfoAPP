@@ -14,7 +14,7 @@ class InfoModel: Mappable {
     var title: String!
     var url: String!
     var thumbnail_pic_s: String!
-    
+    var date: String!
     required init?(map: Map) {
         
     }
@@ -24,6 +24,7 @@ class InfoModel: Mappable {
         title       <- map["title"]
         url         <- map["url"]
         thumbnail_pic_s <- map["thumbnail_pic_s"]
+        date <- map["date"]
     }
 
 }
