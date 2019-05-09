@@ -71,9 +71,8 @@ class InfoCell: UITableViewCell {
     func setModel(infoModel: InfoModel){
         sourceLable.text = infoModel.author_name;
         titleLable.text = infoModel.title;
-        dateLabel.text = infoModel.date
+        dateLabel.text = DateUtil.timeBetween(date: infoModel.date!)
         infoImg.kf.setImage(
             with: URL(string: infoModel.thumbnail_pic_s));
     }
-
 }

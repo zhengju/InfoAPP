@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import ObjectMapper
-class ViewController: UIViewController {
+class ViewController: SuperController {
     
     var tableView: UITableView! = nil
     var datas: [[InfoModel]]! = [[],[],[],[],[],[],[],[],[],[]]
@@ -21,6 +21,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.title = "新闻头条"
         self.view.backgroundColor = UIColor.white
+        
+        initNavigationBar()
         
         topView = InfoTopSelectedView(frame: CGRect(x: 0, y: 88, width: KSCREEN_WIDTH, height: 40))
         topView.delegate = self
@@ -37,6 +39,16 @@ class ViewController: UIViewController {
  
         getDatas(index: seletedIndex);
         
+    }
+    
+    func initNavigationBar() {
+
+        let rightItem = UIBarButtonItem(title: "设置", style: .plain, target: self, action: #selector(rightAction))
+        navigationItem.rightBarButtonItem = rightItem
+    }
+    
+    @objc func rightAction() {
+        navigationController!.pushViewController(SetupController(), animated: true)
     }
     
     func getDatas(index: Int) {

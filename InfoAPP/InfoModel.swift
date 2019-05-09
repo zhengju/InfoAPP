@@ -8,13 +8,17 @@
 
 import UIKit
 import ObjectMapper
+
+
+
 class InfoModel: Mappable {
     
     var author_name: String!
     var title: String!
     var url: String!
     var thumbnail_pic_s: String!
-    var date: String!
+    var date: Date!
+    
     required init?(map: Map) {
         
     }
@@ -24,7 +28,7 @@ class InfoModel: Mappable {
         title       <- map["title"]
         url         <- map["url"]
         thumbnail_pic_s <- map["thumbnail_pic_s"]
-        date <- map["date"]
+        date <- (map["date"],ObjectMapperDateTransform())
     }
 
 }

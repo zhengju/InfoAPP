@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		59486BFC08428CCFFE27263B /* Pods_InfoAPP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39FE801028DAEF66BD8673DC /* Pods_InfoAPP.framework */; };
 		7A9B65D12282E0D300C278AB /* SwiftNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9B65D02282E0D300C278AB /* SwiftNotice.swift */; };
+		7A9B65E42283CC9C00C278AB /* SuperController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9B65E32283CC9C00C278AB /* SuperController.swift */; };
+		7A9B65E62283CCDA00C278AB /* SetupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9B65E52283CCDA00C278AB /* SetupController.swift */; };
+		7A9B65E82284022A00C278AB /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9B65E72284022A00C278AB /* DateUtil.swift */; };
+		7A9B65EB22840F3000C278AB /* ObjectMapperClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9B65EA22840F3000C278AB /* ObjectMapperClass.swift */; };
 		7AB33FA6227E805B00935669 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB33FA5227E805B00935669 /* AppDelegate.swift */; };
 		7AB33FA8227E805B00935669 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB33FA7227E805B00935669 /* ViewController.swift */; };
 		7AB33FAB227E805B00935669 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AB33FA9227E805B00935669 /* Main.storyboard */; };
@@ -26,6 +30,10 @@
 		2230580CB0D9EAF54E308BE0 /* Pods-InfoAPP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InfoAPP.release.xcconfig"; path = "Pods/Target Support Files/Pods-InfoAPP/Pods-InfoAPP.release.xcconfig"; sourceTree = "<group>"; };
 		39FE801028DAEF66BD8673DC /* Pods_InfoAPP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InfoAPP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A9B65D02282E0D300C278AB /* SwiftNotice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftNotice.swift; sourceTree = "<group>"; };
+		7A9B65E32283CC9C00C278AB /* SuperController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperController.swift; sourceTree = "<group>"; };
+		7A9B65E52283CCDA00C278AB /* SetupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupController.swift; sourceTree = "<group>"; };
+		7A9B65E72284022A00C278AB /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
+		7A9B65EA22840F3000C278AB /* ObjectMapperClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectMapperClass.swift; sourceTree = "<group>"; };
 		7AB33FA2227E805B00935669 /* InfoAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InfoAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AB33FA5227E805B00935669 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AB33FA7227E805B00935669 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +68,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7A9B65E22283CC4C00C278AB /* Setup */ = {
+			isa = PBXGroup;
+			children = (
+				7A9B65E52283CCDA00C278AB /* SetupController.swift */,
+			);
+			path = Setup;
+			sourceTree = "<group>";
+		};
+		7A9B65E922840BEC00C278AB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				7AB3400F228125D300935669 /* HeadFile.swift */,
+				7A9B65D02282E0D300C278AB /* SwiftNotice.swift */,
+				7A9B65E72284022A00C278AB /* DateUtil.swift */,
+				7A9B65EA22840F3000C278AB /* ObjectMapperClass.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		7AB33F99227E805B00935669 = {
 			isa = PBXGroup;
 			children = (
@@ -81,14 +108,15 @@
 		7AB33FA4227E805B00935669 /* InfoAPP */ = {
 			isa = PBXGroup;
 			children = (
-				7A9B65D02282E0D300C278AB /* SwiftNotice.swift */,
 				7AB33FA5227E805B00935669 /* AppDelegate.swift */,
 				7AB33FA7227E805B00935669 /* ViewController.swift */,
+				7A9B65E32283CC9C00C278AB /* SuperController.swift */,
 				7AB3400C228121F100935669 /* InfoTopSelectedView.swift */,
 				7AB33FB7227E8AE900935669 /* InfoCell.swift */,
 				7AB33FE0227FFDA400935669 /* InfoModel.swift */,
 				7AB33FBF227EC08D00935669 /* InfoDetailController.swift */,
-				7AB3400F228125D300935669 /* HeadFile.swift */,
+				7A9B65E922840BEC00C278AB /* Utils */,
+				7A9B65E22283CC4C00C278AB /* Setup */,
 				7AB33FA9227E805B00935669 /* Main.storyboard */,
 				7AB33FAC227E805C00935669 /* Assets.xcassets */,
 				7AB33FAE227E805C00935669 /* LaunchScreen.storyboard */,
@@ -236,10 +264,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A9B65EB22840F3000C278AB /* ObjectMapperClass.swift in Sources */,
 				7AB33FE1227FFDA400935669 /* InfoModel.swift in Sources */,
+				7A9B65E82284022A00C278AB /* DateUtil.swift in Sources */,
 				7AB33FC0227EC08D00935669 /* InfoDetailController.swift in Sources */,
 				7AB33FA8227E805B00935669 /* ViewController.swift in Sources */,
+				7A9B65E62283CCDA00C278AB /* SetupController.swift in Sources */,
 				7A9B65D12282E0D300C278AB /* SwiftNotice.swift in Sources */,
+				7A9B65E42283CC9C00C278AB /* SuperController.swift in Sources */,
 				7AB33FA6227E805B00935669 /* AppDelegate.swift in Sources */,
 				7AB33FB8227E8AE900935669 /* InfoCell.swift in Sources */,
 				7AB34010228125D300935669 /* HeadFile.swift in Sources */,
