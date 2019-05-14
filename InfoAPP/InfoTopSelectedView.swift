@@ -32,7 +32,7 @@ class InfoTopSelectedView: UIView {
         var buttonX = 0;
         
         for title in titles {
-            let button = UIButton(frame: CGRect(x: buttonX, y: 0, width: 60, height: Int(h(object: self))))
+            let button = UIButton(frame: CGRect(x: buttonX, y: 0, width: 60, height: Int(self.frameH)))
             button.tag = 100 + buttonX/60;
             button.setTitle(title, for: .normal)
             button.setTitleColor(UIColor.black, for: .normal)
