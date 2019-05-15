@@ -3,6 +3,12 @@ PODS:
   - HandyJSON (5.0.0-beta)
   - Kingfisher (4.10.1)
   - ObjectMapper (3.4.2)
+  - RxCocoa (5.0.0):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.0.0):
+    - RxSwift (~> 5)
+  - RxSwift (5.0.0)
   - SnapKit (4.2.0)
   - SwiftyJSON (5.0.0)
 
@@ -11,6 +17,8 @@ DEPENDENCIES:
   - HandyJSON (= 5.0.0-beta)
   - Kingfisher
   - ObjectMapper
+  - RxCocoa
+  - RxSwift
   - SnapKit
   - SwiftyJSON
 
@@ -20,6 +28,9 @@ SPEC REPOS:
     - HandyJSON
     - Kingfisher
     - ObjectMapper
+    - RxCocoa
+    - RxRelay
+    - RxSwift
     - SnapKit
     - SwiftyJSON
 
@@ -28,9 +39,12 @@ SPEC CHECKSUMS:
   HandyJSON: b84ac9904050a0897a0802092b7cb8808e0a4e9a
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
+  RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
+  RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
+  RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: f1045310c176bd2da1df4f65c19bd80706d07510
+PODFILE CHECKSUM: 91d9890e4f6e58241b91c0c6f84e68634f37aaa5
 
 COCOAPODS: 1.5.3

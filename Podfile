@@ -8,4 +8,6 @@ target 'InfoAPP' do
     pod 'SwiftyJSON'
     pod 'HandyJSON', '5.0.0-beta'
     pod 'ObjectMapper'
+    pod 'RxSwift'
+    pod 'RxCocoa'
 end
