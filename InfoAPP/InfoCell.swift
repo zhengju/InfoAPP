@@ -33,7 +33,7 @@ class InfoCell: UITableViewCell {
         sourceLable.textColor = UIColor.gray;
         contentView.addSubview(sourceLable);
 
-        infoImg.image = UIImage.init(imageLiteralResourceName: "lotus");
+        infoImg.image = UIImage.init(imageLiteralResourceName: "lotus2");
         contentView.addSubview(infoImg);
         
         dateLabel.font = UIFont.systemFont(ofSize: 12);

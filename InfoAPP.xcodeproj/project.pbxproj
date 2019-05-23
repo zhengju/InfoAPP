@@ -25,6 +25,7 @@
 		7AB33FE1227FFDA400935669 /* InfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB33FE0227FFDA400935669 /* InfoModel.swift */; };
 		7AB3400D228121F100935669 /* InfoTopSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB3400C228121F100935669 /* InfoTopSelectedView.swift */; };
 		7AB34010228125D300935669 /* HeadFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB3400F228125D300935669 /* HeadFile.swift */; };
+		7AFD28932294F998006B320B /* SelectItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFD28922294F998006B320B /* SelectItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		7AB33FE0227FFDA400935669 /* InfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoModel.swift; sourceTree = "<group>"; };
 		7AB3400C228121F100935669 /* InfoTopSelectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTopSelectedView.swift; sourceTree = "<group>"; };
 		7AB3400F228125D300935669 /* HeadFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadFile.swift; sourceTree = "<group>"; };
+		7AFD28922294F998006B320B /* SelectItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				7AB33FA7227E805B00935669 /* ViewController.swift */,
 				7A9B65E32283CC9C00C278AB /* SuperController.swift */,
 				7AB3400C228121F100935669 /* InfoTopSelectedView.swift */,
+				7AFD28922294F998006B320B /* SelectItemView.swift */,
 				7AB33FB7227E8AE900935669 /* InfoCell.swift */,
 				7AB33FE0227FFDA400935669 /* InfoModel.swift */,
 				7AB33FBF227EC08D00935669 /* InfoDetailController.swift */,
@@ -277,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A9B65EB22840F3000C278AB /* ObjectMapperClass.swift in Sources */,
+				7AFD28932294F998006B320B /* SelectItemView.swift in Sources */,
 				7AB33FE1227FFDA400935669 /* InfoModel.swift in Sources */,
 				7A613A20228AA8DD008595E7 /* UIView+.swift in Sources */,
 				7A9B65E82284022A00C278AB /* DateUtil.swift in Sources */,

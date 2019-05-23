@@ -16,6 +16,7 @@ class ViewController: SuperController {
     var datas: [[InfoModel]]! = [[],[],[],[],[],[],[],[],[],[]]
     var types: [String]!
     var topView: InfoTopSelectedView!
+    var selectItemView: SelectItemView!
     var seletedIndex = 0
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,11 @@ class ViewController: SuperController {
         tableView.register(InfoCell.classForCoder(), forCellReuseIdentifier: "cellId")
  
         getDatas(index: seletedIndex);
+        
+        selectItemView = SelectItemView(frame: CGRect(x: 0, y: KSCREEN_HEIGHT, width: KSCREEN_WIDTH, height: KSCREEN_HEIGHT))
+        selectItemView.delegate = self
+        self.view.addSubview(selectItemView)
+        
         
     }
     
@@ -146,5 +152,17 @@ extension ViewController : InfoTopSelectedViewProtocol {
     func topSeleted(index: Int) {
         seletedIndex = index
         getDatas(index: index)
+    }
+    func rightClickAction(){
+        UIView.animate(withDuration: 0.5) {
+            self.selectItemView.frameY = 88
+        }
+    }
+}
+extension ViewController: SelectItemViewDelegate {
+    func selectItemClose() {
+        UIView.animate(withDuration: 0.5) {
+            self.selectItemView.frameY = KSCREEN_HEIGHT
+        }
     }
 }

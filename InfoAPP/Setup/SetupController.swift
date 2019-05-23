@@ -24,7 +24,7 @@ class SetupController: SuperController {
         self.imageView.frame = CGRect(x: 0, y: 88, width: KSCREEN_WIDTH,
                                       height: imageViewHeight)
         originalFrame = imageView.frame
-        self.imageView.image = UIImage(named: "lotus")
+        self.imageView.image = UIImage(named: "lotus3")
         self.imageView.contentMode = .scaleAspectFill
         
         view.addSubview(imageView)
