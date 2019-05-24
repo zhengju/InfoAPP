@@ -42,8 +42,10 @@ class ViewController: SuperController {
         
         selectItemView = SelectItemView(frame: CGRect(x: 0, y: KSCREEN_HEIGHT, width: KSCREEN_WIDTH, height: KSCREEN_HEIGHT))
         selectItemView.delegate = self
-        self.view.addSubview(selectItemView)
+//        self.view.addSubview(selectItemView)
         
+        let window = UIApplication.shared.delegate?.window! as! UIWindow
+        window.addSubview(selectItemView)
         
     }
     
@@ -155,14 +157,15 @@ extension ViewController : InfoTopSelectedViewProtocol {
     }
     func rightClickAction(){
         UIView.animate(withDuration: 0.5) {
-            self.selectItemView.frameY = 88
+            self.selectItemView.frameY = 0
         }
     }
 }
 extension ViewController: SelectItemViewDelegate {
-    func selectItemClose() {
+    func selectItemClose(dataArray datas:Array<ItemModel>) {
         UIView.animate(withDuration: 0.5) {
             self.selectItemView.frameY = KSCREEN_HEIGHT
         }
+        //改变选择条
     }
 }

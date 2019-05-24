@@ -54,7 +54,8 @@ class InfoTopSelectedView: UIView {
         
         rightButton = UIButton(frame: CGRect(x: Int(self.frameW - 60), y: 0, width: 60, height: Int(self.frameH)))
         rightButton.addTarget(self, action: #selector(rightClick(button:)), for: .touchUpInside)
-        rightButton.backgroundColor = UIColor.blue
+        rightButton.backgroundColor = UIColor.white
+        rightButton.setImage(UIImage(named: "sanheng"), for: .normal)
         self.addSubview(rightButton)
         
         

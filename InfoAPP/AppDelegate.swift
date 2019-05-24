@@ -16,7 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        self.window?.rootViewController = UINavigationController.init(rootViewController: ViewController.init());
+        let nav =  UINavigationController.init(rootViewController: ViewController.init())
+        nav.navigationBar.barTintColor = .red
+        let dict:NSDictionary = [NSAttributedString.Key.foregroundColor: UIColor.white,NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)]
+        //标题颜色
+        nav.navigationBar.titleTextAttributes = dict as? [NSAttributedString.Key : AnyObject]
+        //item颜色
+        nav.navigationBar.tintColor = .white
+        
+        self.window?.rootViewController = nav
         
         return true
     }

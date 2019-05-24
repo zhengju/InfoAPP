@@ -15,15 +15,19 @@ class SelectItemView: UIView {
     var datas: [[ItemModel]]!
     var selectedIndexPath: IndexPath!
     var collectionView: UICollectionView!
-    
+    var bgView: UIView!
     weak open var delegate: SelectItemViewDelegate?
     
     override init(frame: CGRect) {
         
         super.init(frame: frame)
-        self.backgroundColor = .white
+        self.backgroundColor = .black
         
-      selectedIndexPath = IndexPath.init(row: 0, section: 0)
+        bgView = UIView(frame: CGRect(x: 0, y: 44, width: self.frameW, height: self.frameH-44))
+        bgView.backgroundColor = .white
+        self.addSubview(bgView)
+      
+        selectedIndexPath = IndexPath.init(row: 0, section: 0)
         
         let titles1 = ["头条","社会","国内","国际","娱乐","体育","军事","科技","财经","时尚"]
         let titles2 = ["头条1","社会1","国内1","国际1","娱乐1","体育1","军事1","科技1","财经1","时尚1"]
@@ -42,16 +46,18 @@ class SelectItemView: UIView {
             model.indexPath = IndexPath.init(row: i, section: 1)
             datas1.append(model)
         }
-        datas = [datas0,datas1] as? [[ItemModel]]
+        
+        let model = ItemModel()
+        model.isEdit = false
 
-        
-        
+        datas = [datas0,datas1,[model]] as? [[ItemModel]]
+
         closeBtn = UIButton()
-        closeBtn.setTitle("X", for: UIControl.State.normal)
+        closeBtn.setImage(UIImage(named: "close1"), for: .normal)
         closeBtn.setTitleColor(.black, for: .normal)
-        self.addSubview(closeBtn)
+        bgView.addSubview(closeBtn)
         closeBtn.rx.tap.subscribe(onNext: { [weak self] in
-            self!.delegate?.selectItemClose()
+            self!.delegate?.selectItemClose(dataArray: (self?.datas.first)!)
         }, onError: { error  in
             print(error)
         }, onCompleted: {
@@ -60,8 +66,8 @@ class SelectItemView: UIView {
             print("disposed")
         })
         closeBtn.snp.makeConstraints { make in
-            make.left.equalTo(self).offset(10)
-            make.top.equalTo(self).offset(10)
+            make.left.equalTo(bgView).offset(10)
+            make.top.equalTo(bgView).offset(10)
             make.width.height.equalTo(35)
         }
         
@@ -79,19 +85,18 @@ class SelectItemView: UIView {
         layout.headerReferenceSize = CGSize(width: KSCREEN_WIDTH, height: 40)
         layout.sectionInset = UIEdgeInsets.init(top: CGFloat(interitemSpacing), left: CGFloat(interitemSpacing), bottom: 0, right: CGFloat(interitemSpacing))
         
-        collectionView  = UICollectionView(frame: CGRect(x: 0, y: 40, width: self.frameW, height: self.frameH-40), collectionViewLayout: layout)
+        collectionView  = UICollectionView(frame: CGRect(x: 0, y: 45, width: self.frameW, height: bgView.frameH-45), collectionViewLayout: layout)
         collectionView.backgroundColor = .white
         collectionView.register(SelectItemViewCell.classForCoder(), forCellWithReuseIdentifier: "cellId")
         collectionView.register(SelectItemHeader.classForCoder(), forSupplementaryViewOfKind:UICollectionView.elementKindSectionHeader , withReuseIdentifier: "header")
         collectionView.showsVerticalScrollIndicator = false
         collectionView.delegate = self
         collectionView.dataSource = self
-        self.addSubview(collectionView)
+        bgView.addSubview(collectionView)
 
         let longPressGes = UILongPressGestureRecognizer.init(target: self, action: #selector(longPressMethod(longPressGes:)))
        
         collectionView.addGestureRecognizer(longPressGes)
-        
         
     }
     
@@ -100,6 +105,10 @@ class SelectItemView: UIView {
         
         
         guard let indexPath: IndexPath = collectionView.indexPathForItem(at: point) else {
+            return
+        }
+        
+        if indexPath.section == 1 {
             return
         }
         
@@ -146,7 +155,7 @@ extension SelectItemView: UICollectionViewDataSource {
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return datas.count
+        return datas.count - 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -155,11 +164,18 @@ extension SelectItemView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header", for: indexPath)
-         
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header", for: indexPath) as! SelectItemHeader
+            if indexPath.section == 1{
+                view.editBtn.isHidden = true
+            }else{
+                view.editBtn.isHidden = false
+                 view.delegate = self
+                
+                view.setModel(model: datas[2].first!)
+                
+            }
+
             return view
-            
-            break
 
         default: break
             
@@ -183,14 +199,17 @@ extension SelectItemView: UICollectionViewDelegate {
             dataArr1.remove(at: indexPath.row)
             datas[indexPath.section] = dataArr1
 
-
             var dataArr0 = datas![0]
+            let model2 = datas[2].first
+            model.hidden = !model2!.isEdit!
             dataArr0.append(model)
             datas[0] = dataArr0
 
-            //提前补位才能移动
-            collectionView.moveItem(at: indexPath, to: IndexPath.init(row: dataArr0.count - 1 , section: 0))
+            let toIndex = IndexPath.init(row: dataArr0.count - 1 , section: 0)
             
+            //提前补位才能移动
+            collectionView.moveItem(at: indexPath, to: toIndex)
+            collectionView.reloadItems(at: [toIndex])
         }else{
             
             if selectedIndexPath != indexPath , selectedIndexPath != nil {
@@ -221,7 +240,6 @@ extension SelectItemView: UICollectionViewDelegate {
 extension SelectItemView: SelectItemViewCellDelegate {
     func selectItemViewCellCancel(model: ItemModel) {
         
-
         let dataArr0 = datas[0]
         //找出位置
         guard let index = dataArr0.firstIndex(of:model) else { return  }
@@ -232,15 +250,41 @@ extension SelectItemView: SelectItemViewCellDelegate {
         datas[0] = array
         
         var dataArr1 = datas[1]
+        model.hidden = true
         dataArr1.append(model)
         datas[1] = dataArr1
-        collectionView.moveItem(at: IndexPath.init(row: index, section: 0), to: IndexPath.init(row: dataArr1.count - 1 , section: 1))
+        
+        let toIndex = IndexPath.init(row: dataArr1.count - 1 , section: 1)
+        
+        collectionView.moveItem(at: IndexPath.init(row: index, section: 0), to: toIndex)
 
+        collectionView.reloadItems(at: [toIndex])
+        
     }
 }
-
+extension SelectItemView: SelectItemHeaderDelegate{
+    func editAction(isSelected:Bool) {
+        print("edit")
+        var dataArr0 = datas[0]
+        dataArr0 = dataArr0.map({ (model:ItemModel) in
+            model.hidden = !isSelected
+            return model
+        })
+        datas[0] = dataArr0
+        
+        var dataArr2 = datas[2]
+        let model = dataArr2.first
+        model?.isEdit = isSelected
+        dataArr2[0] = model!
+        datas[2] = dataArr2
+        
+        collectionView.reloadData()
+    }
+}
 protocol SelectItemViewDelegate: NSObjectProtocol  {
-    func selectItemClose()
+    
+    func selectItemClose(dataArray:Array<ItemModel>)
+    
 }
 
 
@@ -248,19 +292,20 @@ class SelectItemViewCell: UICollectionViewCell {
     
     var titleL: UILabel!
     var model: ItemModel?
+    var  cancelBtn: UIButton!
     weak open var delegate: SelectItemViewCellDelegate?
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = RGB_COLOR(r: 244, g: 245, b: 246)
     
         titleL = UILabel()
-        titleL.text = "热点"
+        titleL.text = "--"
         self.addSubview(titleL)
         titleL.snp.makeConstraints { make in
             make.center.equalTo(self.snp_center)
         }
         
-        let  cancelBtn = UIButton()
+        cancelBtn = UIButton()
         self.addSubview(cancelBtn)
         
         cancelBtn.rx.tap.subscribe(onNext: { [weak self] in
@@ -278,7 +323,8 @@ class SelectItemViewCell: UICollectionViewCell {
             make.top.equalTo(self).offset(-10)
             make.width.height.equalTo(20)
         }
-        cancelBtn.backgroundColor = .red
+        
+        cancelBtn.setImage(UIImage(named: "close"), for: .normal)
         
     }
     
@@ -290,6 +336,9 @@ class SelectItemViewCell: UICollectionViewCell {
         }else{
             titleL.textColor = .black
         }
+        
+        cancelBtn.isHidden = model.hidden!
+        
     }
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         if (!self.isUserInteractionEnabled || self.isHidden || self.alpha <= 0.01 ){
@@ -320,6 +369,8 @@ protocol SelectItemViewCellDelegate: NSObjectProtocol {
 
 class SelectItemHeader: UICollectionReusableView {
     
+    weak open var delegate: SelectItemHeaderDelegate?
+    var editBtn: UIButton!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -332,6 +383,29 @@ class SelectItemHeader: UICollectionReusableView {
             make.centerY.equalTo(self.snp_centerY)
         }
         
+        editBtn = UIButton()
+        editBtn.setTitle("编辑", for: .normal)
+        editBtn.setTitle("完成", for: .selected)
+        editBtn.setTitleColor(.black, for: .normal)
+        self.addSubview(editBtn)
+        editBtn.snp.makeConstraints { make in
+            make.centerY.equalTo(self.snp_centerY)
+            make.right.equalTo(self.snp_right).offset(-10)
+        }
+        editBtn.addTarget(self, action: #selector(clickAction(button:)), for: .touchUpInside)
+
+    }
+    func setModel(model:ItemModel){
+        
+        editBtn.isSelected = model.isEdit!
+        
+    }
+    @objc func clickAction(button:UIButton){
+      
+        button.isSelected = !button.isSelected
+
+        self.delegate?.editAction(isSelected: button.isSelected)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -339,12 +413,21 @@ class SelectItemHeader: UICollectionReusableView {
     }
     
 }
+protocol SelectItemHeaderDelegate: NSObjectProtocol {
+    func editAction(isSelected:Bool)
+}
+
+
 class ItemModel: NSObject {
     var title: String?
     var isSelected: Bool?
+    var hidden: Bool?
+    var isEdit: Bool?
     var indexPath: IndexPath?
+    
     override init() {
-
+        isEdit = false
+        hidden = true
         isSelected = false
     }
 }
