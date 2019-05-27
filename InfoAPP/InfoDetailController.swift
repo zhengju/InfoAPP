@@ -17,9 +17,17 @@ class InfoDetailController: UIViewController {
         self.title = "资讯详情";
         
         let webView = WKWebView.init(frame: view.bounds);
+        webView.uiDelegate = self
+        webView.navigationDelegate = self
         self.view.addSubview(webView);
         webView.load(URLRequest(url: URL(string: url)!));
         
     }
+    
+}
+extension InfoDetailController: WKUIDelegate{
+    
+}
+extension InfoDetailController: WKNavigationDelegate{
     
 }

@@ -16,26 +16,33 @@ class InfoTopSelectedView: UIView {
   
     
     var scrollView:UIScrollView!
-    var titles: [String]!
-    var titleStrings: [String]!
+
     var selectedButton: UIButton!
     var rightButton: UIButton!
+    var datas:Array<ChannelListModel>!
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         scrollView = UIScrollView(frame: self.bounds)
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
-        
-        titles = ["头条","社会","国内","国际","娱乐","体育","军事","科技","财经","时尚",""]
-        titleStrings = ["top","shehui","guonei","guoji","yule","tiyu","junshi","keji","caijing","shishang",""]
-        
+
+        rightButton = UIButton(frame: CGRect(x: Int(self.frameW - 60), y: 0, width: 60, height: Int(self.frameH)))
+        rightButton.addTarget(self, action: #selector(rightClick(button:)), for: .touchUpInside)
+        rightButton.backgroundColor = UIColor.white
+        rightButton.setImage(UIImage(named: "sanheng"), for: .normal)
+        self.addSubview(rightButton)
+
+    }
+    
+    
+    func setDatas(datas:Array<ChannelListModel>) {
+        self.datas = datas
         var buttonX = 0;
-        
-        for title in titles {
-            let button = UIButton(frame: CGRect(x: buttonX, y: 0, width: 60, height: Int(self.frameH)))
-            button.tag = 100 + buttonX/60;
-            button.setTitle(title, for: .normal)
+        for model in datas {
+            let button = UIButton(frame: CGRect(x: buttonX, y: 0, width: 80, height: Int(self.frameH)))
+            button.tag = 100 + buttonX/80;
+            button.setTitle(model.name, for: .normal)
             button.setTitleColor(UIColor.black, for: .normal)
             button.setTitleColor(UIColor.red, for: .selected)
             button.addTarget(self, action: #selector(buttonClick(button:)), for: .touchUpInside)
@@ -46,20 +53,11 @@ class InfoTopSelectedView: UIView {
                 selectedButton = button
             }
             
-            buttonX = buttonX + 60
+            buttonX = buttonX + 80
         }
-        
-        scrollView.contentSize = CGSize(width: titles.count*60, height: 0)
+
+        scrollView.contentSize = CGSize(width: self.datas.count*80, height: 0)
         self.addSubview(scrollView)
-        
-        rightButton = UIButton(frame: CGRect(x: Int(self.frameW - 60), y: 0, width: 60, height: Int(self.frameH)))
-        rightButton.addTarget(self, action: #selector(rightClick(button:)), for: .touchUpInside)
-        rightButton.backgroundColor = UIColor.white
-        rightButton.setImage(UIImage(named: "sanheng"), for: .normal)
-        self.addSubview(rightButton)
-        
-        
-        
     }
     
     @objc func rightClick(button:UIButton){
@@ -70,7 +68,7 @@ class InfoTopSelectedView: UIView {
     @objc func buttonClick(button: UIButton) {
         let index = button.tag - 100;
  
-        guard index < titles.count - 1  else {
+        guard index < datas.count - 1  else {
             
             return;
         }
@@ -85,11 +83,16 @@ class InfoTopSelectedView: UIView {
             selectedButton = button;
             selectedButton.isSelected = true
             
+            
             if delegate != nil {
-                delegate?.topSeleted(index: index)
+                
+                let model = datas[index]
+                model.index = index
+                datas[index] = model
+                
+                delegate?.topSeleted(model: datas[index])
             }
         }
-
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -100,6 +103,6 @@ class InfoTopSelectedView: UIView {
 
 
 protocol InfoTopSelectedViewProtocol : NSObjectProtocol {
-    func topSeleted(index:Int)
+    func topSeleted(model:ChannelListModel)
     func rightClickAction()
 }

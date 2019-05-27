@@ -13,8 +13,8 @@ import ObjectMapper
 class ViewController: SuperController {
     
     var tableView: UITableView! = nil
-    var datas: [[InfoModel]]! = [[],[],[],[],[],[],[],[],[],[]]
-    var types: [String]!
+    var datas: [[ContentlistModel]]! = [[],[],[],[],[],[],[],[],[],[]]
+    var channelLists:[ChannelListModel]!
     var topView: InfoTopSelectedView!
     var selectItemView: SelectItemView!
     var seletedIndex = 0
@@ -22,33 +22,47 @@ class ViewController: SuperController {
         super.viewDidLoad()
         self.title = "新闻头条"
         self.view.backgroundColor = UIColor.white
-        
+
         initNavigationBar()
         
         topView = InfoTopSelectedView(frame: CGRect(x: 0, y: 88, width: KSCREEN_WIDTH, height: 40))
         topView.delegate = self
         self.view.addSubview(topView)
-        
-        types = ["top","shehui","guonei","guoji","yule","tiyu","junshi","keji","caijing","shishang"]
-        
+
         tableView =  UITableView(frame: CGRect(x: 0, y: 128, width: KSCREEN_WIDTH, height: KSCREEN_HEIGHT - 128), style: .plain)
         self.view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView.init()
         tableView.register(InfoCell.classForCoder(), forCellReuseIdentifier: "cellId")
- 
-        getDatas(index: seletedIndex);
+
+        let arr = [
+            ["name":"头条","channelId":"top"],
+            ["name":"社会","channelId":"shehui"],
+            ["name":"国内","channelId":"guonei"],
+            ["name":"国际","channelId":"guoji"],
+            ["name":"娱乐","channelId":"yule"],
+            ["name":"体育","channelId":"tiyu"],
+            ["name":"军事","channelId":"junshi"],
+            ["name":"科技","channelId":"keji"],
+            ["name":"财经","channelId":"caijing"],
+            ["name":"时尚","channelId":"shishang"],
+            ]
+        channelLists = Mapper<ChannelListModel>().mapArray(JSONArray: arr)
         
+        self.topView.setDatas(datas: self.channelLists)
+
+        getTypeDetail(channelId: "top")
+
         selectItemView = SelectItemView(frame: CGRect(x: 0, y: KSCREEN_HEIGHT, width: KSCREEN_WIDTH, height: KSCREEN_HEIGHT))
         selectItemView.delegate = self
-//        self.view.addSubview(selectItemView)
-        
-        let window = UIApplication.shared.delegate?.window! as! UIWindow
-        window.addSubview(selectItemView)
+        let window = UIApplication.shared.delegate?.window!
+        window!.addSubview(selectItemView)
         
     }
     
+    
+
     func initNavigationBar() {
 
         let rightItem = UIBarButtonItem(title: "设置", style: .plain, target: self, action: #selector(rightAction))
@@ -59,56 +73,7 @@ class ViewController: SuperController {
         navigationController!.pushViewController(SetupController(), animated: true)
     }
     
-    func getDatas(index: Int) {
 
-        let hud = self.pleaseWait()
-        
-        //请求接口数据
-        Alamofire.request("http://toutiao-ali.juheapi.com/toutiao/index", parameters: ["type":types[seletedIndex]], headers: ["Authorization":"APPCODE 4c0aa04ae3a74d57996a169ae94c78e6"]).responseJSON { (response) in
-            if response.result.isSuccess {
-                if response.result.value != nil{
-                    
-                    
-                    
-                    switch response.result{
-                    case.success(let json):
-                        
-                        hud.hide()
-//                        self.successNotice("Success", autoClear: true)
-                        
-                        print(JSON.init(arrayLiteral: json))
-                        
-                        let dict = json as! Dictionary<String,AnyObject>
-                        let result = dict["result"]!["data"]
-                        
-//                        self.datas.removeAll()
-                        
-                        //self.datas[self.seletedIndex];
-                        
-                        let  dataArr = Mapper<InfoModel>().mapArray(JSONArray: result as! [[String : Any]])
-                    
-                        if self.datas.count > self.seletedIndex {
-                            self.datas.remove(at: self.seletedIndex)
-                        }
-                        
-                        
-                        
-                        self.datas.insert(dataArr, at: self.seletedIndex)
-
-                        self.tableView.reloadData()
-                        
-                        break
-                    case .failure(let error):
-                        print("\(error)")
-                        break
-                        
-                    }
-                    
-                }
-                
-            }
-        }
-    }
 }
 
 extension ViewController: UITableViewDelegate {
@@ -120,7 +85,7 @@ extension ViewController: UITableViewDelegate {
         
         let model = datas?[seletedIndex][indexPath.row];
         let contrlloer = InfoDetailController();
-        contrlloer.url = model!.url;
+        contrlloer.url = model!.link;
         
         
         self.navigationController?.pushViewController(contrlloer, animated: true);
@@ -151,9 +116,10 @@ extension ViewController: UITableViewDataSource {
 }
 
 extension ViewController : InfoTopSelectedViewProtocol {
-    func topSeleted(index: Int) {
-        seletedIndex = index
-        getDatas(index: index)
+    func topSeleted(model: ChannelListModel){
+
+        getTypeDetail(channelId: model.channelId)
+        
     }
     func rightClickAction(){
         UIView.animate(withDuration: 0.5) {
@@ -167,5 +133,52 @@ extension ViewController: SelectItemViewDelegate {
             self.selectItemView.frameY = KSCREEN_HEIGHT
         }
         //改变选择条
+    }
+}
+
+extension ViewController {
+    func getChannelList(){
+        HttpManager.sharedInstance.getChannelList(success: { (success) in
+            self.channelLists = success
+            self.topView.setDatas(datas: self.channelLists)
+            print(self.channelLists.count)
+            self.getChannelDetail(channelId: "5572a108b3cdc86cf39001cd")
+            
+        }) { (fail) in
+            
+        }
+    }
+    
+    func getTypeDetail(channelId:String){
+        let hud = self.pleaseWait()
+        HttpManager.sharedInstance.getDatas(patameter: ["type":channelId], success: { (success) in
+            hud.hide()
+            if self.datas.count > self.seletedIndex {
+                self.datas.remove(at: self.seletedIndex)
+            }
+            
+            self.datas.insert(success, at: self.seletedIndex)
+            
+            self.tableView.reloadData()
+            
+        }) { (fail) in
+            
+        }
+    }
+    func getChannelDetail(channelId:String){
+        let hud = self.pleaseWait()
+        HttpManager.sharedInstance.getChannelDetail(patameter: ["channelId":channelId], success: { (success) in
+            hud.hide()
+            if self.datas.count > self.seletedIndex {
+                self.datas.remove(at: self.seletedIndex)
+            }
+            
+            self.datas.insert(success, at: self.seletedIndex)
+            
+            self.tableView.reloadData()
+            
+        }) { (fail) in
+            
+        }
     }
 }

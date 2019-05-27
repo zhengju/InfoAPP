@@ -35,3 +35,29 @@ class ObjectMapperDateTransform: TransformType {
     }
     
 }
+class ObjectMapperDateTransform1: TransformType {
+    
+    typealias Object = Date
+    
+    typealias JSON = String
+    
+    open func transformFromJSON(_ value: Any?) -> Date? {
+        
+        if let timeStr = value as? String {
+            
+            return DateUtil.str2Date(str: timeStr, format: DateUtil.DATEFORMAT.FORMAT_YMDHMS.rawValue)
+        }
+        return nil
+    }
+    
+    open func transformToJSON(_ value: Date?) -> String? {
+        
+        if let date = value {
+            
+            return DateUtil.date2Str(date: date, format: DateUtil.DATEFORMAT.FORMAT_YMDHM_1.rawValue)
+        }
+        return nil
+        
+    }
+    
+}

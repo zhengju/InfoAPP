@@ -24,7 +24,7 @@ class InfoCell: UITableViewCell {
         dateLabel = UILabel()
         super.init(style: style, reuseIdentifier: reuseIdentifier);
 
-        titleLable.text = "寺库 X Art Chengdu线上线下同步博览会空降成都";
+        titleLable.text = "--";
         titleLable.numberOfLines = 2;
         contentView.addSubview(titleLable);
         
@@ -68,11 +68,12 @@ class InfoCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setModel(infoModel: InfoModel){
-        sourceLable.text = infoModel.author_name;
+    func setModel(infoModel: ContentlistModel){
+        sourceLable.text = infoModel.source;
         titleLable.text = infoModel.title;
-        dateLabel.text = DateUtil.timeBetween(date: infoModel.date!)
+        dateLabel.text = DateUtil.timeBetween(date: infoModel.pubDate!)
+
         infoImg.kf.setImage(
-            with: URL(string: infoModel.thumbnail_pic_s));
+            with: URL(string: infoModel.img));
     }
 }
