@@ -115,16 +115,32 @@ class SelectItemView: UIView {
         switch longPressGes.state {
         case .began:
         
-            collectionView.beginInteractiveMovementForItem(at: indexPath as IndexPath)
+            if #available(iOS 9.0, *) {
+                collectionView.beginInteractiveMovementForItem(at: indexPath as IndexPath)
+            } else {
+                // Fallback on earlier versions
+            }
             break;
         case .changed:
-            collectionView.updateInteractiveMovementTargetPosition(point)
+            if #available(iOS 9.0, *) {
+                collectionView.updateInteractiveMovementTargetPosition(point)
+            } else {
+                // Fallback on earlier versions
+            }
             break;
         case .ended:
-            collectionView.endInteractiveMovement()
+            if #available(iOS 9.0, *) {
+                collectionView.endInteractiveMovement()
+            } else {
+                // Fallback on earlier versions
+            }
             break;
         default:
-            collectionView.cancelInteractiveMovement()
+            if #available(iOS 9.0, *) {
+                collectionView.cancelInteractiveMovement()
+            } else {
+                // Fallback on earlier versions
+            }
             break
             
         }

@@ -25,11 +25,11 @@ class ViewController: SuperController {
 
         initNavigationBar()
         
-        topView = InfoTopSelectedView(frame: CGRect(x: 0, y: 88, width: KSCREEN_WIDTH, height: 40))
+        topView = InfoTopSelectedView(frame: CGRect(x: 0, y: 64, width: KSCREEN_WIDTH, height: 40))
         topView.delegate = self
         self.view.addSubview(topView)
 
-        tableView =  UITableView(frame: CGRect(x: 0, y: 128, width: KSCREEN_WIDTH, height: KSCREEN_HEIGHT - 128), style: .plain)
+        tableView =  UITableView(frame: CGRect(x: 0, y: 104, width: KSCREEN_WIDTH, height: KSCREEN_HEIGHT - 128), style: .plain)
         self.view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self

@@ -23,10 +23,11 @@ class InfoTopSelectedView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        scrollView = UIScrollView(frame: self.bounds)
+        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.frameW-60, height: self.frameH))
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
 
+        self.addSubview(scrollView)
         rightButton = UIButton(frame: CGRect(x: Int(self.frameW - 60), y: 0, width: 60, height: Int(self.frameH)))
         rightButton.addTarget(self, action: #selector(rightClick(button:)), for: .touchUpInside)
         rightButton.backgroundColor = UIColor.white
@@ -57,7 +58,7 @@ class InfoTopSelectedView: UIView {
         }
 
         scrollView.contentSize = CGSize(width: self.datas.count*80, height: 0)
-        self.addSubview(scrollView)
+        
     }
     
     @objc func rightClick(button:UIButton){
@@ -68,10 +69,10 @@ class InfoTopSelectedView: UIView {
     @objc func buttonClick(button: UIButton) {
         let index = button.tag - 100;
  
-        guard index < datas.count - 1  else {
-            
-            return;
-        }
+//        guard index < datas.count - 1  else {
+//            
+//            return;
+//        }
         
         
         if selectedButton != button {

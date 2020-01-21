@@ -41,7 +41,7 @@
 		7A9B65E52283CCDA00C278AB /* SetupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupController.swift; sourceTree = "<group>"; };
 		7A9B65E72284022A00C278AB /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		7A9B65EA22840F3000C278AB /* ObjectMapperClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectMapperClass.swift; sourceTree = "<group>"; };
-		7AB33FA2227E805B00935669 /* InfoAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InfoAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7AB33FA2227E805B00935669 /* 新闻头条.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "新闻头条.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AB33FA5227E805B00935669 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AB33FA7227E805B00935669 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7AB33FAA227E805B00935669 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -110,7 +110,7 @@
 		7AB33FA3227E805B00935669 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7AB33FA2227E805B00935669 /* InfoAPP.app */,
+				7AB33FA2227E805B00935669 /* 新闻头条.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -165,7 +165,7 @@
 			);
 			name = InfoAPP;
 			productName = InfoAPP;
-			productReference = 7AB33FA2227E805B00935669 /* InfoAPP.app */;
+			productReference = 7AB33FA2227E805B00935669 /* 新闻头条.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -447,15 +447,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2FFNFZE3QD;
 				INFOPLIST_FILE = InfoAPP/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zsw.Info;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "新闻头条";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -467,15 +467,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2FFNFZE3QD;
 				INFOPLIST_FILE = InfoAPP/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zsw.Info;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "新闻头条";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
